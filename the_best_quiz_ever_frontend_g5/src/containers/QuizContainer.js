@@ -4,6 +4,7 @@ import Result from "../components/Result";
 import { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Template from "../components/Template";
+import CreateQuizForm from "../components/CreateQuizForm";
 
 const QuizContainer = () => {
 
@@ -129,6 +130,22 @@ const QuizContainer = () => {
         }
     }, [currentResult]);
 
+
+
+    const postQuiz = async (newQuiz) => {
+        const response = await fetch("http://localhost:8080/quizzes/add-new-quiz", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(newQuiz)
+        })
+        const savedQuiz = await response.json();
+        setQuizList([...quizList, savedQuiz])
+    }
+
+
+
+
+
     const quizRoutes = createBrowserRouter([
         {
             path: "/",
@@ -141,7 +158,11 @@ const QuizContainer = () => {
                 {
                     path: "/question",
                     element: <Question activeQuestion={activeQuestion} patchNextQuestion={patchNextQuestion} currentResult={currentResult} imageUrl={imageUrl} />
-                }
+                },
+                {
+                    path: "/create-new-quiz",
+                    element: <CreateQuizForm postQuiz={postQuiz}/>
+                },
             ]
         }
     ]);

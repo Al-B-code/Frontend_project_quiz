@@ -116,12 +116,12 @@ public class QuizService {
     }
 
 
-    public String addNewQuiz(AddNewQuizDTO addNewQuizDTO) {
+    public Quiz addNewQuiz(AddNewQuizDTO addNewQuizDTO) {
         String quizName = addNewQuizDTO.getName();
         Long currentQuestionNumber = 1L;
         Quiz quiz = new Quiz(quizName, currentQuestionNumber);
         quizRepository.save(quiz);
-        return "Quiz saved";
+        return quiz;
     }
 
 

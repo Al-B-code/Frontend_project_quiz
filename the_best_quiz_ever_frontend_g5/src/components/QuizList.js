@@ -3,7 +3,10 @@ import QuizCard from "./QuizCard";
 const QuizList = ({quizList, handleStartQuiz, findCurrentQuestion}) => {
 
     const quizComponents = quizList.map((quiz) => {
+        console.log(quiz)
+        if (quiz.size > 0){
         return <QuizCard key={quiz.id} quiz={quiz} handleStartQuiz={handleStartQuiz} findCurrentQuestion={findCurrentQuestion} />
+        }
     })
 
 

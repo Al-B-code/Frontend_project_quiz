@@ -15,6 +15,9 @@ const Template  = () => {
                 <li>
                     <NavLink to = "/question" activeClassName="active" className="link"> Current Question</NavLink>
                 </li>
+                <li>
+                    <NavLink to = "/create-new-quiz" activeClassName="active" className="link">Create a New Quiz</NavLink>
+                </li>
             </ul>
         </nav>
         </div>
