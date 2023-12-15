@@ -67,16 +67,16 @@ public class DataLoader implements ApplicationRunner {
         quizRepository.save(quiz1);
 
 //      create outcomes
-        Outcome sloth = new Outcome(quiz1, "a Slothhhhhhh");
+        Outcome sloth = new Outcome("a Slothhhhhhh");
         outcomeRepository.save(sloth);
 
-        Outcome flamingo = new Outcome(quiz1, "a Flamingoooooo");
+        Outcome flamingo = new Outcome("a Flamingoooooo");
         outcomeRepository.save(flamingo);
 
-        Outcome octopus = new Outcome(quiz1, "an Oooooooooooooctopus");
+        Outcome octopus = new Outcome("an Oooooooooooooctopus");
         outcomeRepository.save(octopus);
 
-        Outcome panda = new Outcome(quiz1, "a Panderrrrrrrrrrrrrrr");
+        Outcome panda = new Outcome("a Panderrrrrrrrrrrrrrr");
         outcomeRepository.save(panda);
 
         //        answers for q1
@@ -197,16 +197,16 @@ public class DataLoader implements ApplicationRunner {
         quiz2.setCurrentQuestion(q2_1.getQuestionNumber());
         quizRepository.save(quiz2);
 
-        Outcome mulan = new Outcome(quiz2, "Mulan");
+        Outcome mulan = new Outcome("Mulan");
         outcomeRepository.save(mulan);
 
-        Outcome jasmine = new Outcome(quiz2, "Jasmine");
+        Outcome jasmine = new Outcome("Jasmine");
         outcomeRepository.save(jasmine);
 
-        Outcome tiana = new Outcome(quiz2, "Tiana");
+        Outcome tiana = new Outcome("Tiana");
         outcomeRepository.save(tiana);
 
-        Outcome cinderella = new Outcome(quiz2, "Cinderella");
+        Outcome cinderella = new Outcome("Cinderella");
         outcomeRepository.save(cinderella);
 
         //        answers for quiz 2, question 1

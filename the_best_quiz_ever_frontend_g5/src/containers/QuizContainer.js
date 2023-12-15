@@ -29,6 +29,8 @@ const QuizContainer = () => {
     const [currentResult, setCurrentResult] = useState("");
     const [imageData, setImageData] = useState(null);
     const [imageUrl, setImageUrl] = useState("");
+    const [outcomes, setOutcomes] = useState([]);
+    const [questions, setQuestions] = useState([]);
 
 
     const fetchQuizList = async () => {
@@ -36,6 +38,23 @@ const QuizContainer = () => {
         const data = await response.json();
         setQuizList(data);
     }
+
+    const fetchOutcomes = async () => {
+        const response = await fetch("http://localhost:8080/quizzes/get-all-outcomes");
+        const data = await response.json();
+        setOutcomes(data);
+    }
+
+    const fetchQuestions = async () => {
+        const response = await fetch("http://localhost:8080/quizzes/get-all-questions");
+        const data = await response.json();
+        setQuestions(data);
+    }
+
+    useEffect(() => {
+        fetchOutcomes();
+        fetchQuestions();
+    },[])
 
     useEffect(() => {
         fetchQuizList();
@@ -50,6 +69,8 @@ const QuizContainer = () => {
         const data = await response.json();
         setActiveQuestion(data);
     };
+
+    
 
     const handleStartQuiz = (quiz, answer) => {
         const quizId = {
@@ -142,6 +163,35 @@ const QuizContainer = () => {
         setQuizList([...quizList, savedQuiz])
     }
 
+    const postQuestion = async (newQuestion) => {
+        const response = await fetch("http://localhost:8080/quizzes/add-question-to-quiz", {
+            method: "POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(newQuestion)
+        })
+        fetchQuizList();
+    }
+
+
+    const postOutcome = async (newOutcome) => {
+        const response = await fetch("http://localhost:8080/quizzes/add-outcome", {
+            method: "POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(newOutcome)
+        })
+        fetchQuizList();
+        fetchQuestions();
+    }
+
+    const postAnswer = async (newAnswer) => {
+        const response = await fetch("http://localhost:8080/quizzes/add-answer-to-question", {
+            method: "POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(newAnswer)
+        })
+        fetchQuizList();
+    }
+
 
 
 
@@ -161,7 +211,16 @@ const QuizContainer = () => {
                 },
                 {
                     path: "/create-new-quiz",
-                    element: <CreateQuizForm postQuiz={postQuiz}/>
+                    element: <CreateQuizForm 
+                    postQuiz={postQuiz} 
+                    quizList={quizList} 
+                    postQuestion={postQuestion} 
+                    postOutcome={postOutcome} 
+                    outcomes={outcomes} 
+                    questions={questions} 
+                    fetchOutcomes={fetchOutcomes} 
+                    fetchQuestions={fetchQuestions} 
+                    postAnswer={postAnswer}/>
                 },
             ]
         }

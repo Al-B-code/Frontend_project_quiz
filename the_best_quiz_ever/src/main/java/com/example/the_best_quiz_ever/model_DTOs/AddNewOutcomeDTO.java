@@ -8,21 +8,11 @@ public class AddNewOutcomeDTO {
     private String outcomeText;
 
 
-    public AddNewOutcomeDTO(Long quizId, String outcomeText) {
-        this.quizId = quizId;
+    public AddNewOutcomeDTO(String outcomeText) {
         this.outcomeText = outcomeText;
     }
 
     public AddNewOutcomeDTO() {
-    }
-
-
-    public Long getQuizId() {
-        return quizId;
-    }
-
-    public void setQuizId(Long quizId) {
-        this.quizId = quizId;
     }
 
     public String getOutcomeText() {

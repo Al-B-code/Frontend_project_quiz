@@ -4,6 +4,7 @@ const QuizList = ({quizList, handleStartQuiz, findCurrentQuestion}) => {
 
     const quizComponents = quizList.map((quiz) => {
         console.log(quiz)
+        // the if statement stops a new quiz from showing up in the quizzes screen at home if it has less than 1 question aka not playable.
         if (quiz.size > 0){
         return <QuizCard key={quiz.id} quiz={quiz} handleStartQuiz={handleStartQuiz} findCurrentQuestion={findCurrentQuestion} />
         }

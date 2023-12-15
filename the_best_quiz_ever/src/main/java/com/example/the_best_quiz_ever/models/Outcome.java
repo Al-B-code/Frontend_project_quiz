@@ -30,8 +30,7 @@ public class Outcome {
 //    @JsonIgnoreProperties({"outcome"})   //thibyaaa
 //    private Question question;
 
-    public Outcome(Quiz quiz, String outcome) {
-//        this.quiz = quiz;
+    public Outcome(String outcome) {
         this.outcome = outcome;
         this.answers = new ArrayList<>();
 

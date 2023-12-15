@@ -1,5 +1,6 @@
 package com.example.the_best_quiz_ever.services;
 
+
 import com.example.the_best_quiz_ever.model_DTOs.*;
 import com.example.the_best_quiz_ever.models.Answer;
 import com.example.the_best_quiz_ever.models.Outcome;
@@ -9,6 +10,7 @@ import com.example.the_best_quiz_ever.repositories.AnswerRepository;
 import com.example.the_best_quiz_ever.repositories.OutcomeRepository;
 import com.example.the_best_quiz_ever.repositories.QuestionRepository;
 import com.example.the_best_quiz_ever.repositories.QuizRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -125,6 +127,7 @@ public class QuizService {
     }
 
 
+    @Transactional
     public String addNewQuestion(AddNewQuestionDTO addNewQuestionDTO) {
         Quiz quiz = quizRepository.findById(addNewQuestionDTO.getQuizId()).get();
         Long questionNumber = 1L;
@@ -134,10 +137,11 @@ public class QuizService {
 
 
         Question question = new Question(quiz, addNewQuestionDTO.getQuestionText(), questionNumber);
-        quizRepository.save(quiz);
         questionRepository.save(question);
+        quizRepository.save(quiz);
 
-        return "question added";
+
+        return "question saved";
     }
 
     public String addAnswerToQuestion(AddNewAnswerDTO addNewAnswerDTO){
@@ -151,12 +155,21 @@ public class QuizService {
     }
 
     public String addOutcomeToQuiz(AddNewOutcomeDTO addNewOutcomeDTO){
-        Quiz quiz = quizRepository.findById(addNewOutcomeDTO.getQuizId()).get();
         String outcomeText = addNewOutcomeDTO.getOutcomeText();
 
-        Outcome outcome = new Outcome(quiz, outcomeText);
+        Outcome outcome = new Outcome(outcomeText);
         outcomeRepository.save(outcome);
         return "outcome added";
+    }
+
+    public List<Outcome> getAllOutcomes(){
+        List<Outcome> listOfOutcomes = outcomeRepository.findAll();
+        return listOfOutcomes;
+    }
+
+    public List<Question> getAllQuestions() {
+        List<Question> listOfQuestions = questionRepository.findAll();
+        return listOfQuestions;
     }
 
 
