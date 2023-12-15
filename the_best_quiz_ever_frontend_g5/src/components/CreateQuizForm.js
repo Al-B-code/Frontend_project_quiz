@@ -78,6 +78,7 @@ const CreateQuizForm = ({ postQuiz, postQuestion, quizList, postOutcome, outcome
     </option>
   ));
 
+  console.log(outcomes);
   const outcomeOptions = outcomes.map((outcome) => (
     <option key={outcome.id} value={outcome.id}>
       {outcome.outcome}

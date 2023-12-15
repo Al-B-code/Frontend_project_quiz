@@ -251,3 +251,36 @@ button:active {
 .fourth-color {
     background: #8F8787;
 }
+
+.outlet-container {
+    max-width: 100%;
+}
+
+form {
+    text-wrap: wrap;
+}
+
+form button {
+        background-color: #FBEEE0;
+        border: 2px solid #422800;
+        border-radius: 30px;
+        box-shadow: #422800 4px 4px 0 0;
+        color: #422800;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 15px;
+        padding: auto;
+        line-height: auto;
+        text-align: center;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        height: 2vh;
+}
+
+form {
+    margin-top: 3rem;
+}
+
