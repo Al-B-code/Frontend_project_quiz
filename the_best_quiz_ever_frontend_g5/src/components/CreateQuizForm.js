@@ -3,11 +3,17 @@ import Answer from './Answer';
 
 const CreateQuizForm = ({ postQuiz, postQuestion, quizList, postOutcome, outcomes, questions, fetchOutcomes, fetchQuestions, postAnswer }) => {
 
+  const [isSubmitted, setIsSubmitted] = useState(1);
+
+
+
 
   useEffect(() => {
     fetchOutcomes();
     fetchQuestions();
+
 },[])
+
 
 
   const [stateQuiz, setStateQuiz] = useState({
@@ -135,6 +141,8 @@ const CreateQuizForm = ({ postQuiz, postQuestion, quizList, postOutcome, outcome
     copiedAnswer[propertyName] = event.target.value;
     setStateAnswer(copiedAnswer);
   };
+
+
 
   return (
     <section className="form-container">
